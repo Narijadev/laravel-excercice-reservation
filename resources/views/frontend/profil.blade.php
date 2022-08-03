@@ -1,6 +1,6 @@
 @extends('frontend.layouts.app')
 @section('content')
-
+<div class="container">
         <div class="card">
             <img src="img.jpg" alt="John" style="width:80%">
             <h1>{{ $input->firstname }}</h1>
@@ -12,5 +12,5 @@
             <a href="#"><i class="fa fa-facebook"></i></a> 
             <p><button>Contact</button></p>
         </div>
-   
+ </div>
 @endsection

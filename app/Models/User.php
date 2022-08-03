@@ -18,6 +18,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'reservation_id',
         'name',
         'lastname',
         'firstname',

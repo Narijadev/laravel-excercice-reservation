@@ -25,5 +25,12 @@ Route::get('/article', [App\Http\Controllers\Frontend\ArticleController::class, 
 
 Route::get('/liste-user', [App\Http\Controllers\Frontend\UsersController::class, 'index'])->name('liste-user');
 Route::get('/voir/{id}', [App\Http\Controllers\Frontend\UsersController::class, 'getUser'])->name('voir');
+Route::delete('/delete/{id}', [App\Http\Controllers\Frontend\UsersController::class, 'destroy'])->name('delete');
 Route::get('/liste-reservation', [App\Http\Controllers\Frontend\ResevationController::class, 'index'])->name('liste-reservation');
 Route::get('/detail/{id}', [App\Http\Controllers\Frontend\ResevationController::class, 'getReservation'])->name('voir');
+Route::get('/ajouter', [App\Http\Controllers\Frontend\ResevationController::class, 'addReservation'])->name('ajout-reservation');
+Route::post('/ajouterUsersReservation', [App\Http\Controllers\Frontend\ResevationController::class, 'store'])->name('ajouter-Users-Reservation');
+Route::delete('/deleteUser/{id}', [App\Http\Controllers\Frontend\UsersController::class, 'destroy2'])->name('delete.user');
+Route::get('/search',[App\Http\Controllers\Frontend\UsersController::class, 'search'])->name('search-user');
+
+Route::delete('/addcompany/{id}', [App\Http\Controllers\Frontend\UsersController::class, 'destroy'])->name('company.destroy');

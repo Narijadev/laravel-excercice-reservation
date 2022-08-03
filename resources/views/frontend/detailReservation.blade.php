@@ -1,16 +1,33 @@
 @extends('frontend.layouts.app')
-@section('content')
 
-        <div class="card">
-            <img src="img.jpg" alt="John" style="width:80%">
-            <h1>{{ $input->id }}</h1>
-            <p class="title">CEO & Founder, Example</p>
-            <p>{{ $detailUsersReservation->id }}</p>
-            <a href="#"><i class="fa fa-dribbble"></i></a> 
-            <a href="#"><i class="fa fa-twitter"></i></a> 
-            <a href="#"><i class="fa fa-linkedin"></i></a> 
-            <a href="#"><i class="fa fa-facebook"></i></a> 
-            <p><button>Contact</button></p>
-        </div>
-   
+@section('content')
+<div class="container">
+    <table class="table">
+    <thead class="thead-dark">
+            <tr>
+            <th scope="col">#</th>
+            <th scope="col">name</th>
+            <th scope="col">lastname</th>
+            <th scope="col">lastname</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (count(array($reservation)) > 0) 
+            @foreach ($reservation as $res)
+                <tr>
+                <th scope="row">1</th>
+                <td>{{ $res->name }}</td>
+                <td>{{ $res->lastname }}</td>
+                <td>{{ $res->lastname }}</td>
+                
+                <td><a href="/voir/{{ $res->id }}" class="btn btn-info">Voir</a>
+            </td>
+            <td><button type="button" class="btn btn-warning">Modifier</button><i class="bi bi-pen"></i></td>
+            <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+                </tr>
+            @endforeach 
+        @endif      
+            </tbody>
+            </table>
+</div>
 @endsection

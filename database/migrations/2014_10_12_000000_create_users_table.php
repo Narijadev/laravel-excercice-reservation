@@ -21,9 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('birthdate');
             $table->string('phone');
             $table->string('reservation_id');
+           // $table->bigInteger('reservation_id')->nullable();
+          // $table->unsignedBigInteger('reservation_id');
+           //$table->tinyInteger('reservation_id' , 1)->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
