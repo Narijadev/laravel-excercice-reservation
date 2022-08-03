@@ -43,12 +43,15 @@
             </tr>
         @endforeach    
         </tbody>
-     
         </table>
-
-        <div> {!! $users->links() !!}</div> 
-</div>  
-
+        
+</div>   
+<div align="center">
+            <table>
+                <tr>
+                    <th>{!! $users->links() !!}</th>
+                </tr>
+            </table>
 <script type="text/javascript">
  $(document).ready(function () {
        
