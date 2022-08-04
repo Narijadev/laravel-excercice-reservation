@@ -16,6 +16,10 @@ class UsersController extends Controller{
     {
         $users = User::paginate(3);
        return view('frontend.listUsers', compact('users'));
+     /*  $users = DB::table('users')
+               // ->whereColumn('my_lang', 'default_lang')
+                ->paginate(5);
+                return view('frontend.listUsers', compact('users'));*/
     }
     public function getUser($id)
     {
@@ -59,12 +63,15 @@ class UsersController extends Controller{
                         }
                     } 
                     else {
-             
-                        $output .= '<li class="list-group-item text-center">'.'No results'.'</li>';
+                       
+                        $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
                     }
                     return Response($output);
+                   //return view('frontend.listUsers', compact('users','output'));
                  }
         } 
+
+
         public function destroy($id){
    
             $user = User::find($id);

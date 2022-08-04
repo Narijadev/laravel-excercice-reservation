@@ -40,6 +40,7 @@
                     @method('delete')
                     <button type="submit" class="btn btn-outline-danger">Delete</button>
                 </form></td>
+               
             </tr>
         @endforeach    
         </tbody>
@@ -49,7 +50,7 @@
 <div align="center">
             <table>
                 <tr>
-                    <th>{!! $users->links() !!}</th>
+                    <th>{{ $users->links() }}</th>
                 </tr>
             </table>
 <script type="text/javascript">
@@ -67,39 +68,44 @@
             });
         });
 
+        $('#delete2').on('click', function(){
 
-    $(document).on("click", "#delete", function() { 
+        var confirmation = confirm("are you sure you want to remove the item?");
+
+        if (confirmation) {
+        // execute ajax
+            alert('removed');
+        }
+        });   
+}); 
+$(document).on("click", "#delete", function() { 
        
-        var $ele = $(this).parent().parent();
-        var id= $(this).val();
-        var url = "{{URL('delete')}}";
-        var dltUrl = url+"/"+id;
-        
-        var result = confirm('Are you sure?');
-        if(result) {
+       var $ele = $(this).parent().parent();
+       var id= $(this).val();
+       var url = "{{URL('delete')}}";
+       var dltUrl = url+"/"+id;
+       
+       var result = confirm('Are you sure?');
+       if(result) {
 
-                 // If you pressed OK!";
-		$.ajax({
-			url: dltUrl,
-			type: "DELETE",
-			cache: false,
-			data:{
-				_token:'{{ csrf_token() }}'
-			},
-			success: function(dataResult){
-				var dataResult = JSON.parse(dataResult);
-				if(dataResult.statusCode==200){
-					$ele.fadeOut().remove();
-				}
-			}
-		});
-    } else {
-                // If you pressed Cancel!";
-
-            }
-	});
+                // If you pressed OK!";
+       $.ajax({
+           url: dltUrl,
+           type: "DELETE",
+           cache: false,
+           data:{
+               _token:'{{ csrf_token() }}'
+           },
+           success: function(dataResult){
+               var dataResult = JSON.parse(dataResult);
+               if(dataResult.statusCode==200){
+                   $ele.fadeOut().remove();
+               }
+           }
+       });
+   }
+   });
    
-});  
 
 
 </script>
