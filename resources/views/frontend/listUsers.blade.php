@@ -3,8 +3,17 @@
 @section('content')
 <div class="container">
 <div class="form-inline my-2 my-lg-0 ">
-    <input type="text" class="form-control mr-sm-2 mt-3 mb-3" id="search" name="search"  placeholder="Search" aria-label="Search">
+    <input type="text" class="form-control mr--sm-2 mt-3 mb-3" id="search" name="search"  placeholder="Search" aria-label="Search">
+  
 </div>
+<form method="get" action="{{{ URL::to('search2') }}}">
+<input class="input-xxlarge" name="q" type="text" placeholder="Search...">
+<div class="control-group">
+    <div class="controls">
+        <input type="submit" class="btn" id="submit" value="Submit" />
+    </div>
+</div>
+
 
       <table class="table">
     <thead class="thead-dark">
@@ -45,14 +54,20 @@
         @endforeach    
         </tbody>
         </table>
-        
+        <div class="pagination">
+            <!-- {{ $users->links() }} --> 
+            aaa
+            {{ $users->appends(array('search' => $search))->links() }} 
+        </div>
+     <!--  {{ $users->appends(array('q' => $search))->links() }} --> 
 </div>   
-<div align="center">
+<!--div align="center">
             <table>
                 <tr>
                     <th>{{ $users->links() }}</th>
                 </tr>
             </table>
+</div-->             
 <script type="text/javascript">
  $(document).ready(function () {
        

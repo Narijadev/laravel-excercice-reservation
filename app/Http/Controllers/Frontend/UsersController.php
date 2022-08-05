@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use DB;
+use Input;
 class UsersController extends Controller{
 
     public function __construct()
@@ -14,8 +15,9 @@ class UsersController extends Controller{
     }
     public function index()
     {
-        $users = User::paginate(3);
-       return view('frontend.listUsers', compact('users'));
+        $users = User::paginate(5);
+        $search = Input::get('q');
+       return view('frontend.listUsers', compact('users','search'));
      /*  $users = DB::table('users')
                // ->whereColumn('my_lang', 'default_lang')
                 ->paginate(5);
@@ -37,6 +39,7 @@ class UsersController extends Controller{
         {
             User::find($id)->delete();
             $users = User::all();
+            $search = Input::get('q');
             return view('frontend.listUsers', compact('users'));
            //return response('User deleted successfully.', 200);   
         }
@@ -46,8 +49,11 @@ class UsersController extends Controller{
             if($request->ajax())
                 {
                     $output="";
-                    $users=DB::table('users')->where('name','LIKE','%'.$request->search."%")->get();
-                   
+                    $search = Input::get('q');
+                    $res = $request->search;
+                    
+                    $users=DB::table('users')->where('name','LIKE','%'.$request->search."%")->paginate(5);
+                   //$users=DB::table('users')->where('name','LIKE','%'.$search."%")->paginate(3);
                     if (count($users)>0) {
                         foreach ($users as $key => $user) {
                         $output.='<tr>'.
@@ -67,12 +73,23 @@ class UsersController extends Controller{
                         $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
                     }
                     return Response($output);
-                   //return view('frontend.listUsers', compact('users','output'));
+            
                  }
         } 
+    public function getSearch()
+        {
+            $search = Input::get('q');
+            $output="";
+           
+            $users=DB::table('users')->where('name','LIKE','%'.$search."%")->paginate(3);
+            //$users = $this->users->where('name', 'like', '%'.$search.'%')->paginate(2);
+          
+        // return View::make('site/libraries/list', compact('posts', 'search'));
+       
+            return view('frontend.listUsers', compact('users','search','output'));     
+        }   
 
-
-        public function destroy($id){
+    public function destroy($id){
    
             $user = User::find($id);
             $user->delete();

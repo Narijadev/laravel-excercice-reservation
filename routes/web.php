@@ -34,3 +34,6 @@ Route::delete('/deleteUser/{id}', [App\Http\Controllers\Frontend\UsersController
 Route::get('/search',[App\Http\Controllers\Frontend\UsersController::class, 'search'])->name('search-user');
 
 Route::delete('/addcompany/{id}', [App\Http\Controllers\Frontend\UsersController::class, 'destroy'])->name('company.destroy');
+
+Route::get('/search2',[App\Http\Controllers\Frontend\UsersController::class, 'getSearch'])->name('search2-user');
+Route::get('/searchReservation',[App\Http\Controllers\Frontend\ResevationController::class, 'getSearchReservation'])->name('search-reservation');

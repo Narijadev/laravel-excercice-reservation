@@ -5,7 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Reservation;
 use App\Models\User;
 use DB;
-
+use Input;
 class ResevationController extends Controller{
 
     public function __construct()
@@ -18,8 +18,9 @@ class ResevationController extends Controller{
    
     public function index()
     {
-        $reservations = Reservation::all();
-       return view('frontend.listReservations', compact('reservations'));
+        $search = Input::get('q');
+        $reservations = Reservation::paginate(5);
+       return view('frontend.listReservations', compact('reservations','search'));
     }
     public function addReservation(Request $request){
         $users = User::all();
@@ -104,5 +105,15 @@ class ResevationController extends Controller{
                 var_dump($search);
              echo '</pre>';*/
     }
+    public function getSearchReservation()
+    {
+        $search = Input::get('q');
+      
+       
+        $reservations=DB::table('reservations')->where('status','LIKE','%'.$search."%")->paginate(3);
+        
+   
+        return view('frontend.listReservations', compact('reservations','search'));    
+    } 
     
 }
