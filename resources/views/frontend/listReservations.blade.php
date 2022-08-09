@@ -4,7 +4,7 @@
 <div class="container">
 <div class="row mt-2 mb-2">
     <form class="form-inline my-2 my-lg-0 " method="get" action="{{{ URL::to('searchReservation') }}}">
-        <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
+        <input class="form-control mr-sm-2" name="q" type="date" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </div>         
@@ -30,5 +30,6 @@
     </tbody>
     </table>
     {{ $reservations->appends(array('q' => $search))->links() }} 
+    
 </div>  
 @endsection

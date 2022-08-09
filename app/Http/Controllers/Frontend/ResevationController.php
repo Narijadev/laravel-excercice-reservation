@@ -6,6 +6,9 @@ use App\Models\Reservation;
 use App\Models\User;
 use DB;
 use Input;
+use Illuminate\Support\Carbon;
+use Symfony\Component\Console\Input\Input as InputInput;
+
 class ResevationController extends Controller{
 
     public function __construct()
@@ -23,7 +26,7 @@ class ResevationController extends Controller{
        return view('frontend.listReservations', compact('reservations','search'));
     }
     public function addReservation(Request $request){
-        $users = User::all();
+        $users = User::paginate(5);
       
         $name = $request->input('name');
         $lastname = $request->input('lastname');
@@ -109,8 +112,11 @@ class ResevationController extends Controller{
     {
         $search = Input::get('q');
         $output="";
-      
-        $reservations=DB::table('reservations')->where('status','LIKE','%'.$search."%")->paginate(3);
+      //  $now = Carbon::now(); // Or whatever date you want to use as the start date.
+        //$then = $now->clone()->addDays(10); // Or whatever you want to set the end date as
+       // $reservations = Reservation::whereDate('start_date', '>=', $now)->whereDate('end_date', '<=', $then)->get();
+            
+        $reservations=DB::table('reservations')->where('created_at','LIKE','%'.$search."%")->paginate(3);
     
         if (count($reservations)>0) 
         {
@@ -119,10 +125,11 @@ class ResevationController extends Controller{
         else{
           
             $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
+          //  echo '<div class="error">Erreur détectée</div>';
            
         }
-        //return Response($output);
-        return view('frontend.listReservations', compact('reservations','search','output'));   
+        return Response($output);
+       return view('frontend.listReservations', compact('reservations','search','output'));   
     } 
     
 }
