@@ -123,13 +123,13 @@ class ResevationController extends Controller{
             return view('frontend.listReservations', compact('reservations','search','output')); 
         }
         else{
-          
+            
             $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
-          //  echo '<div class="error">Erreur détectée</div>';
+           //echo '<div class="error">Erreur détectée</div>';
+           return Response($output);
            
         }
-        return Response($output);
-       return view('frontend.listReservations', compact('reservations','search','output'));   
+    
     } 
     
 }
