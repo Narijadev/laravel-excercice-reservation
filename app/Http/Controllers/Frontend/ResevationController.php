@@ -127,7 +127,7 @@ class ResevationController extends Controller{
             $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
            //echo '<div class="error">Erreur détectée</div>';
            return Response($output);
-           
+           //return response()->json(['status' => false, 'message' => 'User not found']);
         }
     
     } 
