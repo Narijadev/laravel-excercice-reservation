@@ -108,12 +108,21 @@ class ResevationController extends Controller{
     public function getSearchReservation()
     {
         $search = Input::get('q');
+        $output="";
       
-       
         $reservations=DB::table('reservations')->where('status','LIKE','%'.$search."%")->paginate(3);
-        
-   
-        return view('frontend.listReservations', compact('reservations','search'));    
+    
+        if (count($reservations)>0) 
+        {
+            return view('frontend.listReservations', compact('reservations','search','output')); 
+        }
+        else{
+          
+            $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
+           
+        }
+        //return Response($output);
+        return view('frontend.listReservations', compact('reservations','search','output'));   
     } 
     
 }

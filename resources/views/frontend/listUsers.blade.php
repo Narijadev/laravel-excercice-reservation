@@ -56,7 +56,7 @@
         </table>
         <div class="pagination">
             <!-- {{ $users->links() }} --> 
-            aaa
+            
             {{ $users->appends(array('search' => $search))->links() }} 
         </div>
      <!--  {{ $users->appends(array('q' => $search))->links() }} --> 

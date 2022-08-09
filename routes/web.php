@@ -37,3 +37,5 @@ Route::delete('/addcompany/{id}', [App\Http\Controllers\Frontend\UsersController
 
 Route::get('/search2',[App\Http\Controllers\Frontend\UsersController::class, 'getSearch'])->name('search2-user');
 Route::get('/searchReservation',[App\Http\Controllers\Frontend\ResevationController::class, 'getSearchReservation'])->name('search-reservation');
+
+Route::get('/searchUserReservation',[App\Http\Controllers\Frontend\ResevationController::class, 'getSearchUserReservation'])->name('search-user-reservation');

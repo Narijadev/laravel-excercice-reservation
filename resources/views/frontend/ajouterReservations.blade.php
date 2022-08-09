@@ -7,11 +7,26 @@
     <h2>Veuillez ajouter des utilisateurs en cliquant sur "Ajouter un utilisateur"</h2>
     <br>
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="open">
-      Ajouter un utilisateur
-    </button>
-  <form method="post" action="{{url('ajouterUsersReservation')}}" id="form"><br/>
+<div class="row">
+  <div class="col">
+    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" id="open">
+          Ajouter un utilisateur
+        </button>
+      <form method="post" action="{{url('ajouterUsersReservation')}}" id="form"><br/>
+    </div>
+    <div class="col">
+      <form method="get" action="{{{ URL::to('searchUserReservation') }}}">
+      <input class="input-xxlarge" name="q" type="text" placeholder="Search...">
+      <div class="control-group">
+          <div class="controls">
+              <input type="submit" class="btn" id="submit" value="Submit" />
+          </div>
+      </div>
+  </div>
+</div>
+
   
+ 
 <table class="table">
   <thead class="thead-dark">
         <tr>
@@ -43,6 +58,7 @@
     @endforeach    
     </tbody>
     </table>
+    {{ $users->links() }}
 <!-- Modal -->
 
 </div>

@@ -2,18 +2,12 @@
 
 @section('content')
 <div class="container">
-<form method="get" action="{{{ URL::to('searchReservation') }}}">
-<input class="input-xxlarge" name="q" type="text" placeholder="Search...">
-<div class="control-group">
-    <div class="controls">
-        <input type="submit" class="btn" id="submit" value="Submit" />
-    </div>
-</div>
-
-<form class="form-inline my-2 my-lg-0" method="get" action="{{{ URL::to('search2') }}}">
-      <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<div class="row mt-2 mb-2">
+    <form class="form-inline my-2 my-lg-0 " method="get" action="{{{ URL::to('searchReservation') }}}">
+        <input class="form-control mr-sm-2" name="q" type="text" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
+</div>         
 <table class="table">
   <thead class="thead-dark">
         <tr>
