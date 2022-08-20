@@ -81,8 +81,8 @@ class ResevationController extends Controller{
        // $user->reservation_id=$request->get('reservation_id');
         $user->save();
         
-        return view('frontend.listUsers',compact('users'));
-        //return response()->json(['success'=>'Data is successfully added']);
+        //return view('frontend.listUsers',compact('users'));
+        return back()->with('success','Item created successfully!');
     }
     public function getReservation($id ,Request $request)
     {
@@ -120,14 +120,17 @@ class ResevationController extends Controller{
     
         if (count($reservations)>0) 
         {
-            return view('frontend.listReservations', compact('reservations','search','output')); 
+            return view('frontend.listReservations', compact('reservations','search','output'));
         }
         else{
             
-            $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
+           // $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
            //echo '<div class="error">Erreur détectée</div>';
-           return Response($output);
-           //return response()->json(['status' => false, 'message' => 'User not found']);
+          // return Response($output);
+           //return view('frontend.listReservations', compact('reservations','search','output'))
+          
+        return redirect('/searchReservation')
+        ->with('success','Item created successfully!',$reservations,$search);
         }
     
     } 
