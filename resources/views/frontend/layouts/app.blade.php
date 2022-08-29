@@ -22,12 +22,13 @@
 
 <body class="{{isset($body_class) ? $body_class : ''}}">
 
+
     <!-- Header Block -->
     @include('frontend.includes.header')
+   
     <!-- / Header Block -->
     
     <div class="wrapper">
-    @include('frontend.flash-message')
     @include('flash-message')
         @yield('content')
         
