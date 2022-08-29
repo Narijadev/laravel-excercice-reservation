@@ -30,6 +30,6 @@
     </tbody>
     </table>
     {{ $reservations->appends(array('q' => $search))->links() }} 
-    
+   
 </div>  
 @endsection

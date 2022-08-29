@@ -65,8 +65,8 @@ class ResevationController extends Controller{
         $res = new Reservation();
         $res->status= 'new';
         $res->save();
-
-        $users = User::all();
+        $search = Input::get('q');
+        $users = User::paginate(5);
         $user= new User();
         
      
@@ -81,7 +81,7 @@ class ResevationController extends Controller{
        // $user->reservation_id=$request->get('reservation_id');
         $user->save();
         
-        return view('frontend.listUsers',compact('users'));
+        return view('frontend.listUsers',compact('users','search'))->with('success','Item created successfully!');
         //return response()->json(['success'=>'Data is successfully added']);
     }
     public function getReservation($id ,Request $request)
@@ -90,23 +90,7 @@ class ResevationController extends Controller{
         $reservation = DB::table('users')->orWhere('reservation_id', $id)->get();
        
        return view('frontend.detailReservation', compact('reservation'));
-        /* if (isset($search['status'])) {
-                if ($search['status'] === 'new') {
-                    $reservation = DB::table('users')->orWhere('reservation_id', $id)->orWhere('reservation_id', $id)->get();
-                 // return view('frontend.detailReservation', compact('reservation'));
-                
-              } else {
-                    echo 'aaaa';
-                  //  return view('frontend.detailReservation', compact('reservation'));
-                }
-            }
-            */
-          /*  echo '<pre>';
-                 var_dump($reservation);
-            echo '</pre>';
-            echo '<pre>';
-                var_dump($search);
-             echo '</pre>';*/
+       
     }
     public function getSearchReservation()
     {
@@ -123,13 +107,11 @@ class ResevationController extends Controller{
             return view('frontend.listReservations', compact('reservations','search','output')); 
         }
         else{
-            
-            $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
-           //echo '<div class="error">Erreur détectée</div>';
-           return Response($output);
-           //return response()->json(['status' => false, 'message' => 'User not found']);
+               
+            return view('frontend.listReservations', compact('reservations','search'))->with('success','Item created successfully!');
         }
-    
+        //return Response($output);
+     
     } 
     
 }
