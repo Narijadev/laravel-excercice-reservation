@@ -18,7 +18,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (count($reservations)>0)
+    <!-- @if (count($reservations)>0)-->
             @foreach ($reservations as $key=>$res) 
                 <tr>
                 <th scope="row">1</th>
@@ -28,14 +28,14 @@
                 <td><a href="/detail/{{ $res->id }}" class="btn btn-info">Detail</a>
                 </tr>
             @endforeach 
-            @else 
+           <!-- @else 
                 <div class="list-group-item" align="center">No results</div>
-            @endif
+            @endif-->
                   
     </tbody>
      
     </table>
-   
+    {{ $output ?? '' }}
     {{ $reservations->appends(array('q' => $search))->links() }} 
    
 </div>  

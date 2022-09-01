@@ -106,20 +106,11 @@ class ResevationController extends Controller{
         {
             return view('frontend.listReservations', compact('reservations','search','output'));
         }
-        else{
-            
-         $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
-           //echo '<div class="error">Erreur détectée</div>';
-           //return Response($output);
-           //return view('frontend.listReservations', compact('reservations','search','output'))
-          
-       /* return redirect('/searchReservation')
-        ->with('success','Item created successfully!',$reservations,$search);*/
+        else {
+         $output .= 'Aucun résultat';
+         //$output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
         }
-        //return Response($output);
-       // return Response($output);
-       /* return redirect('/searchReservation')
-        ->with('success','Item created successfully!',$reservations,$search,$output);*/
+        
         return view('frontend.listReservations', compact('reservations','search','output'));
     } 
     
