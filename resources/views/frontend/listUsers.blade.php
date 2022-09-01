@@ -27,6 +27,7 @@
             <th scope="col">phone</th>
             </tr>
         </thead>
+        {{ $output}}
         <tbody>
         @foreach ($users as $key=>$user) 
             <tr>

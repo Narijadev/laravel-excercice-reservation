@@ -18,17 +18,24 @@
         </tr>
     </thead>
     <tbody>
-    @foreach ($reservations as $key=>$res) 
-        <tr>
-        <th scope="row">1</th>
-        <td>{{ $res->id }}</td>
-        <td>{{ $res->status }}</td>
-        <td>{{ $res->created_at }}</td>
-        <td><a href="/detail/{{ $res->id }}" class="btn btn-info">Detail</a>
-        </tr>
-    @endforeach    
+        @if (count($reservations)>0)
+            @foreach ($reservations as $key=>$res) 
+                <tr>
+                <th scope="row">1</th>
+                <td>{{ $res->id }}</td>
+                <td>{{ $res->status }}</td>
+                <td>{{ $res->created_at }}</td>
+                <td><a href="/detail/{{ $res->id }}" class="btn btn-info">Detail</a>
+                </tr>
+            @endforeach 
+            @else 
+                <div class="list-group-item" align="center">No results</div>
+            @endif
+                  
     </tbody>
+     
     </table>
+   
     {{ $reservations->appends(array('q' => $search))->links() }} 
    
 </div>  
