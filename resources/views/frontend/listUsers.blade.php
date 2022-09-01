@@ -6,13 +6,13 @@
     <input type="text" class="form-control mr--sm-2 mt-3 mb-3" id="search" name="search"  placeholder="Search" aria-label="Search">
   
 </div>
-<form method="get" action="{{{ URL::to('search2') }}}">
+<!--form method="get" action="{{{ URL::to('search2') }}}">
 <input class="input-xxlarge" name="q" type="text" placeholder="Search...">
 <div class="control-group">
     <div class="controls">
         <input type="submit" class="btn" id="submit" value="Submit" />
     </div>
-</div>
+</div-->
 
 
       <table class="table">
@@ -27,7 +27,7 @@
             <th scope="col">phone</th>
             </tr>
         </thead>
-        {{ $output}}
+     
         <tbody>
         @foreach ($users as $key=>$user) 
             <tr>
@@ -56,19 +56,10 @@
         </tbody>
         </table>
         <div class="pagination">
-            <!-- {{ $users->links() }} --> 
-            
-             <!--  {{ $users->appends(array('search' => $search))->links() }}  --> 
         </div>
     {{ $users->appends(array('q' => $search))->links() }}
 </div>   
-<!--div align="center">
-            <table>
-                <tr>
-                    <th>{{ $users->links() }}</th>
-                </tr>
-            </table>
-</div-->             
+             
 <script type="text/javascript">
  $(document).ready(function () {
        
