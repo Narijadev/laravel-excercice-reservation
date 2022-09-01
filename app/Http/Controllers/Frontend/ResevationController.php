@@ -65,8 +65,8 @@ class ResevationController extends Controller{
         $res = new Reservation();
         $res->status= 'new';
         $res->save();
-
-        $users = User::all();
+        $search = Input::get('q');
+        $users = User::paginate(5);
         $user= new User();
         
      
@@ -90,23 +90,7 @@ class ResevationController extends Controller{
         $reservation = DB::table('users')->orWhere('reservation_id', $id)->get();
        
        return view('frontend.detailReservation', compact('reservation'));
-        /* if (isset($search['status'])) {
-                if ($search['status'] === 'new') {
-                    $reservation = DB::table('users')->orWhere('reservation_id', $id)->orWhere('reservation_id', $id)->get();
-                 // return view('frontend.detailReservation', compact('reservation'));
-                
-              } else {
-                    echo 'aaaa';
-                  //  return view('frontend.detailReservation', compact('reservation'));
-                }
-            }
-            */
-          /*  echo '<pre>';
-                 var_dump($reservation);
-            echo '</pre>';
-            echo '<pre>';
-                var_dump($search);
-             echo '</pre>';*/
+       
     }
     public function getSearchReservation()
     {
@@ -122,6 +106,7 @@ class ResevationController extends Controller{
         {
             return view('frontend.listReservations', compact('reservations','search','output'));
         }
+<<<<<<< HEAD
         else{
             
            $output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
@@ -134,6 +119,14 @@ class ResevationController extends Controller{
         }
        // return view('frontend.listReservations', compact('reservations','search','output'));
         return Response($output='',$search='',array $reservations = []);
+=======
+        else {
+         $output .= 'Aucun résultat';
+         //$output .= '<li class="list-group-item" align="center">'.'No results'.'</li>';
+        }
+        
+        return view('frontend.listReservations', compact('reservations','search','output'));
+>>>>>>> f04a8d9f1572ee429d1f7c94e3243f223cbff953
     } 
     
 }
