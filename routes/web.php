@@ -39,3 +39,7 @@ Route::get('/search2',[App\Http\Controllers\Frontend\UsersController::class, 'ge
 Route::get('/searchReservation',[App\Http\Controllers\Frontend\ResevationController::class, 'getSearchReservation'])->name('search-reservation');
 
 Route::get('/searchUserReservation',[App\Http\Controllers\Frontend\ResevationController::class, 'getSearchUserReservation'])->name('search-user-reservation');
+
+Route::get('/createpdffile', [App\Http\Controllers\Frontend\ResevationController::class, 'generatePDF'])->name('create-pdf-file');
+
+Route::get('create-pdf-file2', [App\Http\Controllers\Frontend\PDFController::class, 'index']);
