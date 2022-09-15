@@ -9,8 +9,9 @@ use Input;
 use Illuminate\Support\Carbon;
 use Symfony\Component\Console\Input\Input as InputInput;
 
-use PDF;
-
+//use PDF;
+//use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 class ResevationController extends Controller{
 
     public function __construct()
@@ -140,15 +141,10 @@ class ResevationController extends Controller{
     } 
     public function generatePDF()
     {
-        $data = [
-            'title' => 'Welcome to ItSolutionStuff.com',
-            'date' => date('m/d/Y')
-        ];
-        $reservations = Reservation::all();
-          
-        $pdf = PDF::loadView('myPDF', $reservations);
-    
-        return $pdf->download('itsolutionstuff.pdf');
+        $search = Input::get('q');
+        $reservations = Reservation::paginate(5);
+        $pdf = PDF::loadView('frontend.listReservations',compact('reservations','search'))->setOptions(['defaultFont' => 'sans-serif']);;
+        return $pdf->download('invoice.pdf');
     }
     
 }
