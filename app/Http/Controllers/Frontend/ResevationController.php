@@ -141,9 +141,8 @@ class ResevationController extends Controller{
     } 
     public function generatePDF()
     {
-        $search = Input::get('q');
-        $reservations = Reservation::paginate(999);
-        $pdf = PDF::loadView('frontend.listReservations',compact('reservations','search'))->setOptions(['defaultFont' => 'sans-serif']);;
+        $reservations = Reservation::all();
+        $pdf = PDF::loadView('frontend.listReservationspdf',compact('reservations'))->setOptions(['defaultFont' => 'sans-serif']);;
         return $pdf->download('invoice.pdf');
     }
     

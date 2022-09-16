@@ -4,7 +4,7 @@
 <div class="container">
 <form class="form-inline my-2 my-lg-0 " method="get" action="{{{ URL::to('createpdffile') }}}">
       
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Telecharger</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Telecharger en pdf</button>
     </form>
 <div class="row mt-2 mb-2">
     <form class="form-inline my-2 my-lg-0 " method="get" action="{{{ URL::to('searchReservation') }}}">
