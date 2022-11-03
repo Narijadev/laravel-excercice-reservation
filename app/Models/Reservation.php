@@ -13,6 +13,7 @@ class Reservation extends Model
      */
     protected $fillable = [ 
         'status', 
+        'type'
     ];
 
     public function user()
