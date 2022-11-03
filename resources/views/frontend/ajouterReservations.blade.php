@@ -112,7 +112,12 @@
                 <input type="text" class="form-control" name="phone" id="phone">
               </div>
           </div>
-        
+          <div class="row">
+          <div class="form-group col">
+              <label for="Type">Type reservation:</label>
+              <input type="text" class="form-control" name="type" id="type">
+            </div>
+          </div>
          
       </div>
       <div class="modal-footer">
@@ -129,13 +134,7 @@
 
       <script>
          jQuery(document).ready(function(){
-           /* jQuery('#ajaxSubmit').click(function(e){
-               e.preventDefault();
-               $.ajaxSetup({
-                  headers: {
-                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                  }
-              });*/
+          
                jQuery.ajax({
                   url: "{{ url('/ajouterUsersReservation') }}",
                   method: 'post',
